@@ -1,7 +1,7 @@
-import { useContext, useEffect } from "react";
-import { EventListenersEnum } from "../services/types";
-import { UserContext } from "../context/UserContext/UserContextProvider";
-import { AppContext } from "../context/AppContext/AppContextProvider";
+import { useContext, useEffect } from 'react';
+import { EventListenersEnum } from '../services/types';
+import { UserContext } from '../context/UserContext/UserContextProvider';
+import { AppContext } from '../context/AppContext/AppContextProvider';
 
 export function useHandleConnection() {
   const userContext = useContext(UserContext);
@@ -10,12 +10,11 @@ export function useHandleConnection() {
   useEffect(() => {
     appContext.socketService.on(
       EventListenersEnum.CONNECT,
-      userContext.handleUserConnected
+      userContext.handleUserConnected,
     );
 
-    appContext.socketService.on(
-      EventListenersEnum.UPDATE_ROOM_LIST,
-      (roomData) => appContext.handleUpdateAvailableRoomList(roomData)
+    appContext.socketService.on(EventListenersEnum.UPDATE_ROOM_LIST, roomData =>
+      appContext.handleUpdateAvailableRoomList(roomData),
     );
   }, [userContext, appContext]);
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHandleConnection } from '../../hooks/useHandleConnection';
 import styles from './style.module.css';
-import { Header } from '../Header';
 import { useRoutes } from 'react-router-dom';
 import { routes } from '../../routes';
 

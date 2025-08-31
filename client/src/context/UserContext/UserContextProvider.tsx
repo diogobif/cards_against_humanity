@@ -1,25 +1,57 @@
-import React, { ReactNode, createContext, useContext, useState } from "react";
-import { UserContextType, UserInfoType } from "./types";
-import { AppContext } from "../AppContext/AppContextProvider";
+import React, { ReactNode, createContext, useContext, useState } from 'react';
+import { UserContextType, UserInfoType } from './types';
+import { AppContext } from '../AppContext/AppContextProvider';
+import { LoginFormData } from '../../components/Login/LoginForm/types';
 
 export const UserContext = createContext<UserContextType>({
-  handleUserConnected: () => {},
+  handleUserConnected: () => {
+    throw new Error('handleUserConnected not implemented');
+  },
   isConnected: false,
+  userInfo: null,
+  handleUpdateUserInfo: (data: LoginFormData) => {
+    throw new Error('handleUserConnected not implemented');
+  },
+  isUserInfoComplete: false,
 });
 
 export const UsercontextProvider = ({ children }: { children: ReactNode }) => {
   const appContext = useContext(AppContext);
   const [userInfo, setUserInfo] = useState<UserInfoType | null>(null);
-  const [userId, setUserId] = useState<string | null>(null);
-  const [isConnected, setIsConnected] = useState<boolean>(false);
+  const [isUserInfoComplete, setIsUserInfoComplete] = useState<boolean>(false);
+  const [isConnected, setIsConnected] = useState<boolean>(!!userInfo?.id);
 
-  const handleUserConnected = () => {
-    setUserId(appContext.socketService.getSocketId());
+  const handleUserConnected = (): void => {
+    setUserInfo({
+      id: appContext.socketService.getSocketId(),
+      name: userInfo?.name ?? null,
+      avatar: userInfo?.avatar ?? null,
+    });
+
     setIsConnected(true);
   };
 
+  const handleUpdateUserInfo = (data: LoginFormData): void => {
+    if (userInfo?.id) {
+      setUserInfo({
+        id: userInfo.id,
+        avatar: data.avatarSrc,
+        name: data.name,
+      });
+      setIsUserInfoComplete(true);
+    }
+  };
+
   return (
-    <UserContext.Provider value={{ handleUserConnected, isConnected }}>
+    <UserContext.Provider
+      value={{
+        handleUserConnected,
+        isConnected,
+        userInfo,
+        handleUpdateUserInfo,
+        isUserInfoComplete,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

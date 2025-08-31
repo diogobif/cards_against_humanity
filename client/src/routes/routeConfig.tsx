@@ -1,7 +1,7 @@
 import { Outlet, RouteObject } from 'react-router-dom';
-import { Login } from '../pages/Login';
+import { Home } from '../pages/Home';
 
-const baseRoutes: RouteObject[] = [{ index: true, element: <Login /> }];
+const baseRoutes: RouteObject[] = [{ index: true, element: <Home /> }];
 
 export const routes: RouteObject[] = [
   {
