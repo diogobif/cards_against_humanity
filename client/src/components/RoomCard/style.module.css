@@ -1,0 +1,7 @@
+.roomCard {
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  text-decoration: underline;
+  color: black;
+}
