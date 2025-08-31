@@ -1,4 +1,6 @@
-import React from "react";
+import React from 'react';
+import { PageLayout } from '../../components/PageLayout';
+
 export function Login() {
-  return <span>test</span>;
+  return <PageLayout>test</PageLayout>;
 }

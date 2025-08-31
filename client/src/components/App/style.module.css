@@ -5,7 +5,4 @@
 
 .appGrid {
   grid-column: 2 / 12;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  height: 100vh;
 }
