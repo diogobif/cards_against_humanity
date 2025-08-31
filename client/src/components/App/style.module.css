@@ -1,0 +1,11 @@
+.appContainer {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.appGrid {
+  grid-column: 2 / 12;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+}

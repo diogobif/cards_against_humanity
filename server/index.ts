@@ -12,12 +12,17 @@ const io = new Server(server, {
   cors: { origin: "*" },
 });
 
-const roomList: Room[] = [];
+const roomList: Room[] = [new Room("1", "TDM")];
 const userList: User[] = [];
 
 io.on("connection", (socket) => {
   console.log(`User connected: ${socket.id}`);
 
+  socket.emit(
+    "room:updateList",
+    roomList.map((room: Room) => room.getBasicInfo())
+  );
+  /*
   socket.on("join-room", (roomId: string, userId: string) => {
     socket.join(roomId);
     socket.to(roomId).emit("user-joined", userId);
@@ -27,6 +32,7 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log(`User disconnected: ${socket.id}`);
   });
+  */
 });
 
 const PORT = 3001;
