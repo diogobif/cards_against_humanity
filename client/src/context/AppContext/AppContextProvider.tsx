@@ -1,13 +1,15 @@
-import React, { createContext, ReactNode, useState } from "react";
-import { AppContextType, RoomInfo } from "./types";
-import { SocketService } from "../../services/socketService";
+import React, { createContext, ReactNode, useState } from 'react';
+import { AppContextType, RoomInfo } from './types';
+import { SocketService } from '../../services/socketService';
 
 const socketService = new SocketService();
 
 export const AppContext = createContext<AppContextType>({
   socketService: socketService,
   availableRoomList: [],
-  handleUpdateAvailableRoomList: (_) => {},
+  handleUpdateAvailableRoomList: _ => {
+    throw new Error('Not implemented');
+  },
 });
 
 export const AppContextProvider = ({ children }: { children: ReactNode }) => {

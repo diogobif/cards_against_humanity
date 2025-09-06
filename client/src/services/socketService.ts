@@ -1,12 +1,12 @@
-import { connect } from "socket.io-client";
-import { Emitters, EventEmittersEnum, EventListenersEnum } from "./types";
+import { connect } from 'socket.io-client';
+import { Emitters, EventEmittersEnum, EventListenersEnum } from './types';
 
 export class SocketService {
   private _socket: SocketIOClient.Socket;
 
   constructor() {
     try {
-      this._socket = connect("http://localhost:3001");
+      this._socket = connect('http://localhost:3001');
     } catch (error: any) {
       throw new Error(error);
     }
@@ -23,7 +23,7 @@ export class SocketService {
       if (callback) {
         callback();
       }
-      console.log("Socket.io disconected");
+      console.log('Socket.io disconected');
     } catch (error: any) {
       throw new Error(error);
     }
